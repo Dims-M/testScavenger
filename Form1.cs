@@ -19,8 +19,9 @@ namespace testScavenger
             this.Visible = false;
             this.Hide();
 
-          //  this.Visible = this.Visible ? true : false;
-
+            //  this.Visible = this.Visible ? true : false;
+            //https://www.youtube.com/watch?v=8yfOZHMxV94&t=153s
+            //https://www.youtube.com/watch?v=x4r75csMkms&t=21s
         }
 
         private string path = @"E:\123\";
