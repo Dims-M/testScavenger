@@ -27,10 +27,11 @@ namespace testScavenger
 
         private void Form1_Load(object sender, EventArgs e)
         {
-           // this.WindowState = FormWindowState.Minimized;
+            this.WindowState = FormWindowState.Minimized;
            // this.ShowInTaskbar = false;
             Visible = false; //zapusk(); // false; //true;
             this.Hide();
+           // this.Visible = this.Visible ? true : false;
 
             //Компьютер\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run
 
@@ -101,6 +102,11 @@ namespace testScavenger
             chekerAns();
             zapusk(false);
 
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            Visible = false;
         }
     }
 }
