@@ -16,14 +16,23 @@ namespace testScavenger
         public Form1()
         {
             InitializeComponent();
+            this.Visible = false;
+            this.Hide();
+
+          //  this.Visible = this.Visible ? true : false;
+
         }
 
         private string path = @"E:\123\";
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.Visible = zapusk(); // false; //true;
+           // this.WindowState = FormWindowState.Minimized;
+           // this.ShowInTaskbar = false;
+            Visible = false; //zapusk(); // false; //true;
+            this.Hide();
 
+            //Компьютер\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run
 
             //Microsoft.Win32.RegistryKey autorun = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run",true);
             //autorun.SetValue("System32", Application.ExecutablePath);
@@ -39,7 +48,8 @@ namespace testScavenger
             //    System.IO.File.WriteAllText(path + rand.NextDouble().ToString(), rand.NextDouble().ToString() + rand.NextDouble().ToString());
             //}
 
-            FileCreation();
+            // FileCreation();
+            chekerAns();
 
         }
 
@@ -50,9 +60,17 @@ namespace testScavenger
         }
 
 
-        private void FileCreation()
+        //асинхорррый запуск
+       private  async Task chekerAns()
+        {
+          await  Task.Run(() => FileCreation());
+           
+        }
+
+        private  void FileCreation()
         {
             int test = 0;
+
             Random rand = new Random();
 
             System.IO.Directory.CreateDirectory(path);
@@ -62,7 +80,7 @@ namespace testScavenger
                 System.IO.File.WriteAllText(path + rand.NextDouble().ToString(), rand.NextDouble().ToString() + rand.NextDouble().ToString());
                 
                 Thread.Sleep(1000);
-                label1.Text += "Спим";
+                
                 test += 1;
 
                 if (test ==10 )
@@ -72,16 +90,16 @@ namespace testScavenger
             }
         }
 
-        private bool zapusk(bool znach = true)
+        private bool zapusk(bool znach = false)
         {
             return znach;
         }
 
         private void Button1_Click(object sender, EventArgs e)
         {
-           // avtoGruz();
-           // FileCreation();
-           // zapusk(false);
+            // avtoGruz();
+            chekerAns();
+            zapusk(false);
 
         }
     }
